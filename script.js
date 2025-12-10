@@ -1,22 +1,17 @@
 let scene, camera, renderer, human;
 
-init();
-
+// Initialize Three.js scene
 function init() {
-    // Scene
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff); // white background
+    scene.background = new THREE.Color(0xffffff);
 
-    // Camera
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / 500, 0.1, 1000);
     camera.position.z = 5;
 
-    // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, 500);
     document.getElementById('three-container').appendChild(renderer.domElement);
 
-    // Light
     const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(1, 1, 1);
     scene.add(light);
@@ -24,7 +19,7 @@ function init() {
     const ambient = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambient);
 
-    // Default human (gray capsule)
+    // Default human capsule
     const geometry = new THREE.CapsuleGeometry(0.5, 1.5, 4, 8);
     const material = new THREE.MeshStandardMaterial({ color: 0x808080 });
     human = new THREE.Mesh(geometry, material);
@@ -33,13 +28,14 @@ function init() {
     animate();
 }
 
+// Animate the model
 function animate() {
     requestAnimationFrame(animate);
-    if (human) human.rotation.y += 0.01; // spinning
+    if (human) human.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 
-// Update human size based on user input
+// Update human based on user input
 function updateModel() {
     const heightInput = parseFloat(document.getElementById('height').value);
     const weightInput = parseFloat(document.getElementById('weight').value);
@@ -49,16 +45,21 @@ function updateModel() {
         return;
     }
 
-    // Remove old human
+    // Remove previous model
     scene.remove(human);
 
-    // Map user input to 3D size
-    const heightScale = heightInput / 170; // 170cm = default size
-    const weightScale = weightInput / 65;  // 65kg = default size
+    // Scale model based on inputs
+    const heightScale = heightInput / 170;
+    const weightScale = weightInput / 65;
 
-    // Capsule geometry
     const geometry = new THREE.CapsuleGeometry(0.5 * Math.cbrt(weightScale), 1.5 * heightScale, 4, 8);
     const material = new THREE.MeshStandardMaterial({ color: 0x808080 });
     human = new THREE.Mesh(geometry, material);
     scene.add(human);
 }
+
+// Event listener for button
+document.addEventListener("DOMContentLoaded", () => {
+    init();
+    document.getElementById('showBtn').addEventListener('click', updateModel);
+});
