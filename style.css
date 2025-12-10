@@ -2,12 +2,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background: linear-gradient(to bottom, #808080, #000000); /* grey top → black bottom */
     overflow: hidden;
+    background: linear-gradient(to bottom, #808080, #000000); /* grey top → black bottom */
     position: relative;
 }
 
-/* Optional: keep the container style the same */
+/* Container stays the same */
 .container {
     max-width: 600px;
     margin: auto;
@@ -16,29 +16,12 @@ body {
     border-radius: 10px;
 }
 
-/* Blinking stars */
-body::after {
-    content: "";
+/* Star canvas */
+#star-canvas {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: transparent;
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
-    box-shadow: 
-        50px 100px white,
-        200px 300px white,
-        400px 150px white,
-        600px 400px white,
-        800px 250px white,
-        1000px 100px white,
-        1200px 350px white,
-        1400px 200px white;
-    animation: twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle {
-    0% {opacity: 0.3;}
-    50% {opacity: 1;}
-    100% {opacity: 0.3;}
 }
