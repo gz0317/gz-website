@@ -1,9 +1,11 @@
+/* Basic page styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: white;
 }
 
+/* Container for inputs */
 .container {
     width: 90%;
     max-width: 400px;
@@ -14,6 +16,7 @@ body {
     text-align: center;
 }
 
+/* Input box styles */
 .input-box {
     display: flex;
     flex-direction: column;
@@ -26,6 +29,7 @@ input {
     font-size: 16px;
 }
 
+/* Button styles */
 button {
     padding: 12px;
     background: #0077ff;
@@ -40,6 +44,7 @@ button:hover {
     background: #005fcc;
 }
 
+/* 3D model container */
 #three-container {
     width: 100%;
     height: 500px;
