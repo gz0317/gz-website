@@ -69,3 +69,50 @@ function calculateCarBudget() {
         <strong>Monthly Installment:</strong> $${monthlyInstallment.toFixed(2)} per month for ${years} years
     `;
 }
+
+// STAR BACKGROUND
+const starCanvas = document.getElementById("star-canvas");
+const ctx = starCanvas.getContext("2d");
+starCanvas.width = window.innerWidth;
+starCanvas.height = window.innerHeight;
+
+const stars = [];
+const numStars = 100;
+
+for (let i = 0; i < numStars; i++) {
+    stars.push({
+        x: Math.random() * starCanvas.width,
+        y: Math.random() * starCanvas.height,
+        radius: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.3,
+        dy: (Math.random() - 0.5) * 0.3
+    });
+}
+
+function animateStars() {
+    ctx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+    for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "white";
+        ctx.fill();
+        star.x += star.dx;
+        star.y += star.dy;
+
+        if (star.x < 0) star.x = starCanvas.width;
+        if (star.x > starCanvas.width) star.x = 0;
+        if (star.y < 0) star.y = starCanvas.height;
+        if (star.y > starCanvas.height) star.y = 0;
+    }
+    requestAnimationFrame(animateStars);
+}
+
+animateStars();
+
+// Handle resize
+window.addEventListener("resize", () => {
+    starCanvas.width = window.innerWidth;
+    starCanvas.height = window.innerHeight;
+});
