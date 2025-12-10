@@ -1,6 +1,5 @@
 let scene, camera, renderer, human;
 
-// Initialize Three.js scene
 function init() {
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
@@ -28,14 +27,12 @@ function init() {
     animate();
 }
 
-// Animate the model
 function animate() {
     requestAnimationFrame(animate);
     if (human) human.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 
-// Update human based on user input
 function updateModel() {
     const heightInput = parseFloat(document.getElementById('height').value);
     const weightInput = parseFloat(document.getElementById('weight').value);
@@ -45,10 +42,8 @@ function updateModel() {
         return;
     }
 
-    // Remove previous model
     scene.remove(human);
 
-    // Scale model based on inputs
     const heightScale = heightInput / 170;
     const weightScale = weightInput / 65;
 
@@ -58,7 +53,6 @@ function updateModel() {
     scene.add(human);
 }
 
-// Event listener for button
 document.addEventListener("DOMContentLoaded", () => {
     init();
     document.getElementById('showBtn').addEventListener('click', updateModel);
