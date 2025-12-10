@@ -1,9 +1,28 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My GitHub Website</title>
-  </head>
-  <body>
-    <h1>Hello! This is my website on GitHub Pages.</h1>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Size Identifier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Body Size Checker</h1>
+
+        <div class="input-box">
+            <label>Height (cm):</label>
+            <input type="number" id="height" placeholder="e.g. 170">
+
+            <label>Weight (kg):</label>
+            <input type="number" id="weight" placeholder="e.g. 65">
+
+            <button onclick="checkBodySize()">Check Size</button>
+        </div>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
